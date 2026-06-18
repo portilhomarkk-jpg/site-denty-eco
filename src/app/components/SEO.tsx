@@ -108,10 +108,10 @@ export function SEO() {
       logo: `${url}/logo_denty_eco_branco.png`,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Joinville',
+        streetAddress: 'Rua Albano Schmidt, 5268',
         addressLocality: 'Joinville',
         addressRegion: 'SC',
-        postalCode: '89200-000',
+        postalCode: '89228-310',
         addressCountry: 'BR',
       },
       geo: {
