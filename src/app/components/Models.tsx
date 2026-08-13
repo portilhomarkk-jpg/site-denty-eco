@@ -172,8 +172,15 @@ export function Models() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const parsePrice = (price: string) => Number(price.replace(/[^\d]/g, '')) || 0;
+
     api.getModels()
-      .then(data => setModels((data as any[]).map(migrateModel).filter((m: ModelData) => m.available !== false)))
+      .then(data => setModels(
+        (data as any[])
+          .map(migrateModel)
+          .filter((m: ModelData) => m.available !== false)
+          .sort((a: ModelData, b: ModelData) => parsePrice(a.price) - parsePrice(b.price))
+      ))
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
