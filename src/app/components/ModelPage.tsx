@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Battery, Zap, Gauge, BatteryCharging, ArrowLeft } from 'lucide-react';
+import { Battery, Zap, Gauge, BatteryCharging, ArrowLeft, MapPin, Shield, Wrench } from 'lucide-react';
 import { api } from '../utils/api';
+
+const toSlug = (name: string) =>
+  name.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\s+/g, '-');
 
 const COLOR_MAP: Record<string, string> = {
   Preta: '#1a1a1a', Branca: '#ffffff', Vermelha: '#dc2626',
@@ -8,6 +11,64 @@ const COLOR_MAP: Record<string, string> = {
   Amarela: '#eab308', Laranja: '#ea580c', Rosa: '#ec4899',
   Roxa: '#9333ea', Dourada: '#d97706', Prata: '#9ca3af',
 };
+
+function ModelSEO({ model }: { model: any }) {
+  useEffect(() => {
+    const slug = toSlug(model.name);
+    const url = `https://dentyeco.com.br/modelos/${slug}`;
+    const title = `${model.name} | Scooter Elétrica em Joinville SC — Denty Eco`;
+    const description = `Compre a ${model.name} em Joinville, SC. ${model.power}, autonomia de ${model.autonomy}, velocidade ${model.speed}. Bateria ${model.battery} ${model.batteryType}. A partir de ${model.price}. Denty Eco — 25 anos de experiência.`;
+
+    document.title = title;
+
+    const setMeta = (name: string, content: string, attr = 'name') => {
+      let el = document.querySelector(`meta[${attr}="${name}"]`) as HTMLMetaElement;
+      if (!el) { el = document.createElement('meta'); el.setAttribute(attr, name); document.head.appendChild(el); }
+      el.content = content;
+    };
+    const setLink = (rel: string, href: string) => {
+      let el = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
+      if (!el) { el = document.createElement('link'); el.rel = rel; document.head.appendChild(el); }
+      el.href = href;
+    };
+    const setJsonLd = (id: string, data: object) => {
+      let el = document.getElementById(id) as HTMLScriptElement;
+      if (!el) { el = document.createElement('script'); el.id = id; el.type = 'application/ld+json'; document.head.appendChild(el); }
+      el.textContent = JSON.stringify(data);
+    };
+
+    setMeta('description', description);
+    setMeta('og:title', title, 'property');
+    setMeta('og:description', description, 'property');
+    setMeta('og:url', url, 'property');
+    setLink('canonical', url);
+
+    const priceNum = model.price.replace(/[^\d]/g, '');
+    setJsonLd('ld-model-product', {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: model.name,
+      description,
+      image: model.colors[0]?.image || 'https://dentyeco.com.br/scooter-about.png',
+      brand: { '@type': 'Brand', name: 'Denty Eco' },
+      offers: {
+        '@type': 'Offer',
+        price: priceNum,
+        priceCurrency: 'BRL',
+        availability: 'https://schema.org/InStock',
+        url,
+        seller: { '@type': 'Organization', name: 'Denty Eco', url: 'https://dentyeco.com.br' },
+      },
+    });
+
+    return () => {
+      document.title = 'Denty Eco | Scooter Elétrica em Joinville SC — Comprar Moto Elétrica';
+      document.getElementById('ld-model-product')?.remove();
+    };
+  }, [model]);
+
+  return null;
+}
 
 export function ModelPage({ modelId }: { modelId: string }) {
   const [model, setModel] = useState<any>(null);
@@ -17,7 +78,7 @@ export function ModelPage({ modelId }: { modelId: string }) {
   useEffect(() => {
     window.scrollTo(0, 0);
     api.getModels().then(models => {
-      const found = models.find((m: any) => m.id === modelId || m.name.toLowerCase().replace(/\s+/g, '-') === modelId);
+      const found = models.find((m: any) => m.id === modelId || toSlug(m.name) === modelId);
       setModel(found || null);
       setLoading(false);
     }).catch(() => setLoading(false));
@@ -44,9 +105,12 @@ export function ModelPage({ modelId }: { modelId: string }) {
 
   const curColor = model.colors[selColor] || model.colors[0];
   const img = curColor?.image;
+  const waMsg = encodeURIComponent(`Vim pelo site! Quero saber mais sobre o ${model.name} na cor ${curColor?.name}`);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+      <ModelSEO model={model} />
+
       {/* Header */}
       <div className="sticky top-0 z-10 bg-black/80 backdrop-blur-xl border-b border-yellow-500/20 px-4 py-3 flex items-center gap-3">
         <button onClick={goBack} className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-yellow-400 hover:text-black transition-all">
@@ -58,23 +122,49 @@ export function ModelPage({ modelId }: { modelId: string }) {
         </div>
       </div>
 
-      <div className="max-w-2xl mx-auto px-4 pb-12">
+      <div className="max-w-2xl mx-auto px-4 pb-16">
         {/* Imagem */}
         <div className="h-72 sm:h-96 bg-gray-800/50 flex items-center justify-center overflow-hidden my-6 rounded-2xl border border-yellow-500/20">
-          {img && <img src={img} alt={model.name} className="w-full h-full object-contain scale-[1.3]" />}
+          {img
+            ? <img src={img} alt={`${model.name} — scooter elétrica em Joinville SC`} className="w-full h-full object-contain scale-[1.3]" />
+            : <Zap size={48} className="text-gray-600" />
+          }
+        </div>
+
+        {/* Preço + CTA principal */}
+        <div className="flex items-center justify-between gap-4 mb-6 bg-white/5 rounded-2xl p-4 border border-yellow-500/20">
+          <div>
+            <p className="text-xs text-gray-400 uppercase tracking-wider">A partir de</p>
+            <p className="text-3xl font-bold text-white">{model.price}</p>
+          </div>
+          <a
+            href={`https://wa.me/554730283351?text=${waMsg}`}
+            target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black rounded-full text-sm font-medium hover:from-yellow-500 hover:to-yellow-600 transition-all shadow-lg shadow-yellow-500/30"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 flex-shrink-0">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Tenho Interesse
+          </a>
         </div>
 
         {/* Cores */}
-        <div className="flex items-center gap-3 mb-6">
-          {model.colors.map((c: any, i: number) => (
-            <button key={i} onClick={() => setSelColor(i)}
-              className={`w-9 h-9 rounded-full border-2 transition-all ${i === selColor ? 'border-yellow-400 scale-110' : 'border-white/30'}`}
-              style={{ backgroundColor: COLOR_MAP[c.name] || '#888' }} title={c.name} />
-          ))}
-          <span className="text-gray-300 text-sm">{curColor?.name}</span>
-        </div>
+        {model.colors.length > 1 && (
+          <div className="mb-6">
+            <p className="text-xs text-gray-400 mb-2">Cor selecionada: <span className="text-white">{curColor?.name}</span></p>
+            <div className="flex items-center gap-2 flex-wrap">
+              {model.colors.map((c: any, i: number) => (
+                <button key={i} onClick={() => setSelColor(i)}
+                  className={`w-9 h-9 rounded-full border-2 transition-all ${i === selColor ? 'border-yellow-400 scale-110' : 'border-white/30'}`}
+                  style={{ backgroundColor: COLOR_MAP[c.name] || '#888' }} title={c.name} />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Specs */}
+        <h2 className="text-white text-sm uppercase tracking-widest mb-3">Especificações</h2>
         <div className="grid grid-cols-2 gap-3 mb-6">
           {[
             { icon: Zap, label: 'Potência', val: model.power },
@@ -101,16 +191,41 @@ export function ModelPage({ modelId }: { modelId: string }) {
           </div>
         )}
 
-        {/* CTA */}
+        {/* Diferenciais locais */}
+        <div className="grid grid-cols-1 gap-3 mb-8">
+          <div className="flex items-start gap-3 bg-white/5 rounded-xl p-4 border border-white/5">
+            <MapPin className="text-yellow-400 flex-shrink-0 mt-0.5" size={18} />
+            <div>
+              <p className="text-white text-sm">Disponível em Joinville, SC</p>
+              <p className="text-gray-400 text-xs">Rua Albano Schmidt, 5268 — Comasa · CEP 89228-310</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 bg-white/5 rounded-xl p-4 border border-white/5">
+            <Wrench className="text-yellow-400 flex-shrink-0 mt-0.5" size={18} />
+            <div>
+              <p className="text-white text-sm">Assistência técnica local</p>
+              <p className="text-gray-400 text-xs">Equipe especializada em Joinville com peças originais</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 bg-white/5 rounded-xl p-4 border border-white/5">
+            <Shield className="text-yellow-400 flex-shrink-0 mt-0.5" size={18} />
+            <div>
+              <p className="text-white text-sm">25 anos de experiência</p>
+              <p className="text-gray-400 text-xs">Denty Eco — referência em duas rodas no Norte de SC</p>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA final */}
         <a
-          href={`https://wa.me/554730283351?text=${encodeURIComponent(`Vim pelo site! Quero saber mais sobre o ${model.name} na cor ${curColor?.name}`)}`}
+          href={`https://wa.me/554730283351?text=${waMsg}`}
           target="_blank" rel="noopener noreferrer"
           className="w-full flex items-center justify-center gap-2 py-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black rounded-full text-sm font-medium hover:from-yellow-500 hover:to-yellow-600 transition-all shadow-lg shadow-yellow-500/30"
         >
           <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 flex-shrink-0">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
-          Tenho Interesse — Falar com Consultor
+          Falar com Consultor — WhatsApp
         </a>
       </div>
     </div>

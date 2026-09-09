@@ -66,7 +66,7 @@ function ModelCard({ model }: { model: ModelData }) {
   const resolvedImage = useResolvedImage(current?.image ?? '');
 
   const goToDetail = () => {
-    const slug = model.name.toLowerCase().replace(/\s+/g, '-');
+    const slug = model.name.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/\s+/g, '-');
     window.history.pushState({}, '', `/modelos/${slug}`);
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
