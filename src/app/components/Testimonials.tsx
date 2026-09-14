@@ -38,35 +38,46 @@ export function Testimonials() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
+          <p className="text-yellow-400 text-sm uppercase tracking-widest mb-3">Avaliações reais</p>
           <h2 className="text-4xl md:text-5xl mb-4 text-white">
-            O Que Nossos Clientes Dizem
+            Clientes que Já Pedalaram<br className="hidden sm:block" /> para o Futuro
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Milhares de pessoas já transformaram sua mobilidade urbana
-          </p>
+          <div className="flex items-center justify-center gap-2 mt-4">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="text-yellow-400 fill-yellow-400" size={20} />
+            ))}
+            <span className="text-gray-400 text-sm ml-2">5.0 no Google</span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-white/5 backdrop-blur-xl p-8 rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-yellow-500/20 transition-all border border-yellow-500/30 hover:border-yellow-400/60"
+              className="relative bg-white/5 backdrop-blur-xl p-7 rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-yellow-500/20 transition-all border border-white/10 hover:border-yellow-400/30 flex flex-col"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <p className="text-white">{testimonial.name}</p>
-                  <p className="text-sm text-gray-400">{testimonial.role}</p>
-                </div>
-                <GoogleIcon />
-              </div>
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent rounded-t-2xl" />
 
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-1 mb-5">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="text-yellow-400 fill-yellow-400 drop-shadow-lg" size={18} />
+                  <Star key={i} className="text-yellow-400 fill-yellow-400" size={16} />
                 ))}
               </div>
 
-              <p className="text-gray-300 italic">"{testimonial.text}"</p>
+              <p className="text-gray-200 text-sm leading-relaxed flex-1 mb-6">"{testimonial.text}"</p>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-yellow-400/20 border border-yellow-400/40 flex items-center justify-center text-yellow-400 text-sm font-semibold">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="text-white text-sm">{testimonial.name}</p>
+                    <p className="text-xs text-gray-400">{testimonial.role}</p>
+                  </div>
+                </div>
+                <GoogleIcon />
+              </div>
             </div>
           ))}
         </div>

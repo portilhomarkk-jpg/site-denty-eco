@@ -192,8 +192,9 @@ export function Models() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl text-white mb-4">Escolha a Ideal para Você</h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">Temos o modelo perfeito para cada necessidade</p>
+          <p className="text-yellow-400 text-sm uppercase tracking-widest mb-3">Disponíveis em Joinville</p>
+          <h2 className="text-4xl md:text-5xl text-white mb-4">Nossos Modelos</h2>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">Do urbano ao esportivo — encontre a scooter certa para o seu dia a dia</p>
         </div>
 
         {loading ? (

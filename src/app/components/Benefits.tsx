@@ -35,27 +35,29 @@ export function Benefits() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
+          <p className="text-yellow-400 text-sm uppercase tracking-widest mb-3">Por que elétrico?</p>
           <h2 className="text-4xl md:text-5xl mb-4 text-white">
-            Por Que Escolher a Mobilidade Elétrica?
+            Vantagens que Você Sente<br className="hidden sm:block" /> no Dia a Dia
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Descubra os benefícios de uma nova forma de se locomover
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Quem já tem uma scooter elétrica não volta atrás
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="bg-white/5 backdrop-blur-xl p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all hover:-translate-y-2 group border border-yellow-500/30 hover:border-yellow-400/60"
+              className="relative bg-white/5 backdrop-blur-xl p-7 rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-yellow-500/20 transition-all hover:-translate-y-1 group border border-white/10 hover:border-yellow-400/40"
             >
-              <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${benefit.color} backdrop-blur-md flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-xl shadow-yellow-500/50 border border-yellow-400`}>
-                <benefit.icon className="text-black" size={32} />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/40 to-transparent rounded-t-2xl" />
+              <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${benefit.color} flex items-center justify-center mb-5 group-hover:scale-105 transition-transform shadow-lg shadow-yellow-500/30`}>
+                <benefit.icon className="text-black" size={26} />
               </div>
-              <h3 className="text-xl mb-3 text-white">
+              <h3 className="text-lg text-white mb-2">
                 {benefit.title}
               </h3>
-              <p className="text-gray-400">
+              <p className="text-gray-400 text-sm leading-relaxed">
                 {benefit.description}
               </p>
             </div>

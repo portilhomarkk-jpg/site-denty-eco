@@ -76,20 +76,28 @@ export function Hero() {
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/20 z-10" />
 
-      <div className="absolute bottom-10 sm:bottom-20 left-0 right-0 z-20 flex justify-center gap-2 sm:gap-4 px-4">
+      {/* Copy sobre a imagem */}
+      <div className="absolute bottom-24 sm:bottom-36 left-0 right-0 z-20 text-center px-6 pointer-events-none">
+        <p className="text-white/90 text-xs sm:text-base uppercase tracking-[0.2em] mb-1 sm:mb-2 drop-shadow-lg">Joinville, SC</p>
+        <h2 className="text-2xl sm:text-5xl md:text-6xl text-white drop-shadow-2xl leading-tight">
+          Mobilidade <span className="text-yellow-400">Elétrica</span><br className="hidden sm:block" /> para o Futuro
+        </h2>
+      </div>
+
+      <div className="absolute bottom-8 sm:bottom-14 left-0 right-0 z-20 flex justify-center gap-3 sm:gap-4 px-4">
         <a
           href="#modelos"
-          className="px-4 py-1.5 sm:px-8 sm:py-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black rounded-full hover:from-yellow-500 hover:to-yellow-600 transition-all uppercase tracking-wider text-[10px] sm:text-sm shadow-lg shadow-yellow-500/50 whitespace-nowrap"
+          className="px-6 py-2.5 sm:px-10 sm:py-3.5 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black rounded-full hover:from-yellow-500 hover:to-yellow-600 transition-all uppercase tracking-wider text-xs sm:text-sm font-semibold shadow-xl shadow-yellow-500/50 whitespace-nowrap"
         >
-          Saiba Mais
+          Ver Modelos
         </a>
         <a
           href={`https://wa.me/554730283351?text=${encodeURIComponent(slide?.whatsappText || '')}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-4 py-1.5 sm:px-8 sm:py-3 bg-transparent text-white border-2 border-white/80 rounded-full hover:bg-white hover:text-black transition-all uppercase tracking-wider text-[10px] sm:text-sm whitespace-nowrap"
+          className="px-6 py-2.5 sm:px-10 sm:py-3.5 bg-white/10 backdrop-blur-sm text-white border border-white/50 rounded-full hover:bg-white hover:text-black transition-all uppercase tracking-wider text-xs sm:text-sm font-semibold whitespace-nowrap"
         >
-          Contato
+          Falar no WhatsApp
         </a>
       </div>
 

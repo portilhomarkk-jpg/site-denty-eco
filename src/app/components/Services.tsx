@@ -21,11 +21,12 @@ export function Services() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
+          <p className="text-yellow-400 text-sm uppercase tracking-widest mb-3">Pós-venda completo</p>
           <h2 className="text-4xl md:text-5xl mb-4 text-white">
-            Nossos Serviços
+            Suporte que Você<br className="hidden sm:block" /> Pode Contar
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Qualidade e experiência a serviço da sua mobilidade
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            25 anos cuidando de duas rodas em Joinville. Sua scooter em boas mãos.
           </p>
         </div>
 
