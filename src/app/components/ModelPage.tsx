@@ -76,8 +76,7 @@ function getWatts(power: string) {
 }
 
 function getModelContent(model: any) {
-  const w = getWatts(model.power);
-  const needsCNH = w > 350;
+  const needsCNH = false;
 
   const idealFor = needsCNH
     ? ['Uso diário em trajetos longos', 'Quem já tem CNH categoria A', 'Rotas entre bairros e cidades vizinhas como Jaraguá do Sul', 'Substituição de carro em deslocamentos urbanos']

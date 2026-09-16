@@ -5,7 +5,7 @@ const faqs = [
   {
     question: 'Precisa de CNH para andar de scooter elétrica em Joinville?',
     answer:
-      'Depende da potência. Scooters elétricas autopropelidas com até 350W e velocidade máxima de 32 km/h são equiparadas a bicicletas: não precisam de CNH, emplacamento nem seguro. Modelos acima de 350W exigem CNH categoria A. Na Denty Eco temos modelos para os dois perfis. Fale conosco e indicamos o ideal para o seu caso.',
+      'Não! Todos os modelos da Denty Eco são autopropelidos e dispensam CNH, emplacamento e seguro obrigatório. Você pode sair de casa e pedalar hoje mesmo, sem burocracia nenhuma.',
   },
   {
     question: 'Qual é a autonomia das scooters elétricas da Denty Eco?',
