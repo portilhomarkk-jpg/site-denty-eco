@@ -15,6 +15,7 @@ import { TrackingScripts } from './components/TrackingScripts';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { LocalSEO } from './components/LocalSEO';
 import { ModelPage } from './components/ModelPage';
+import { FAQ } from './components/FAQ';
 
 function HomePage() {
   return (
@@ -28,6 +29,7 @@ function HomePage() {
       <Benefits />
       <Services />
       <Testimonials />
+      <FAQ />
       <LocalSEO />
       <Footer />
       <WhatsAppButton />
