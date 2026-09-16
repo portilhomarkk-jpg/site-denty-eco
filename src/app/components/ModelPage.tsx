@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Battery, Zap, Gauge, BatteryCharging, ArrowLeft, MapPin, Shield, Wrench } from 'lucide-react';
+import { Battery, Zap, Gauge, BatteryCharging, ArrowLeft, MapPin, Shield, Wrench, CheckCircle2, Users, ChevronDown } from 'lucide-react';
 import { api } from '../utils/api';
 
 const toSlug = (name: string) =>
@@ -70,6 +70,86 @@ function ModelSEO({ model }: { model: any }) {
   return null;
 }
 
+function getWatts(power: string) {
+  const m = power.match(/(\d+)/);
+  return m ? parseInt(m[1]) : 0;
+}
+
+function getModelContent(model: any) {
+  const w = getWatts(model.power);
+  const needsCNH = w > 350;
+
+  const idealFor = needsCNH
+    ? ['Uso diário em trajetos longos', 'Quem já tem CNH categoria A', 'Rotas entre bairros e cidades vizinhas como Jaraguá do Sul', 'Substituição de carro em deslocamentos urbanos']
+    : ['Quem não tem CNH — dispensada até 350W', 'Deslocamentos curtos e médios no centro de Joinville', 'Estudantes e trabalhadores que querem economizar', 'Primeiros usuários de scooter elétrica'];
+
+  const advantages = [
+    `Motor ${model.power} — ${needsCNH ? 'desempenho superior em subidas e trajetos longos' : 'potência ideal para uso urbano sem necessidade de CNH'}`,
+    `Autonomia de ${model.autonomy} por carga completa`,
+    `Velocidade máxima de ${model.speed}`,
+    `Bateria ${model.battery} ${model.batteryType} com longa vida útil`,
+    'Recarga em tomada comum 110V/220V — sem adaptadores',
+    'Assistência técnica especializada em Joinville, SC',
+    '25 anos de experiência da Denty Eco em duas rodas',
+  ];
+
+  const description = needsCNH
+    ? `A ${model.name} é a scooter elétrica ideal para quem busca desempenho e autonomia no dia a dia em Joinville. Com motor ${model.power}, ela entrega velocidade máxima de ${model.speed} e percorre até ${model.autonomy} com uma única carga — perfeita para substituir o carro em trajetos urbanos e intermunicipais. A bateria ${model.battery} ${model.batteryType} garante durabilidade e recarga rápida em qualquer tomada. Disponível na Denty Eco, loja especializada em scooters elétricas em Joinville com 25 anos de experiência e assistência técnica local.`
+    : `A ${model.name} é a scooter elétrica perfeita para o dia a dia em Joinville. Com motor ${model.power}, ela é equiparada a uma bicicleta pela legislação brasileira — sem necessidade de CNH, emplacamento ou seguro obrigatório. Percorre até ${model.autonomy} por carga e atinge ${model.speed}, ideal para deslocamentos no centro e bairros da cidade. A bateria ${model.battery} ${model.batteryType} recarrega em qualquer tomada e dura anos. Adquira na Denty Eco, referência em mobilidade elétrica em Joinville com 25 anos de experiência e assistência técnica local.`;
+
+  const faqs = [
+    {
+      q: `A ${model.name} precisa de CNH?`,
+      a: needsCNH
+        ? `Sim. Com ${model.power}, a ${model.name} é classificada como moto elétrica e exige CNH categoria A, emplacamento e seguro obrigatório (DPVAT).`
+        : `Não. Com ${model.power}, a ${model.name} é equiparada a uma bicicleta pela legislação (Res. CONTRAN 465/2013) — sem CNH, sem emplacamento e sem seguro obrigatório.`,
+    },
+    {
+      q: `Qual a autonomia real da ${model.name}?`,
+      a: `Em condições normais de uso (piloto de 70 kg, terreno plano, velocidade moderada), a ${model.name} percorre até ${model.autonomy} por carga. Em subidas ou velocidades máximas, a autonomia pode ser reduzida em 20–30%.`,
+    },
+    {
+      q: `Quanto tempo demora para recarregar a ${model.name}?`,
+      a: `A recarga completa leva aproximadamente 4 a 6 horas em tomada comum 110V ou 220V. Não é necessário nenhum adaptador especial.`,
+    },
+    {
+      q: `A Denty Eco faz assistência técnica da ${model.name} em Joinville?`,
+      a: `Sim! Nossa oficina em Joinville (Rua Albano Schmidt, 5268 — Comasa) realiza manutenção preventiva, troca de bateria, diagnóstico eletrônico e reparo de qualquer componente da ${model.name}.`,
+    },
+  ];
+
+  return { idealFor, advantages, description, faqs, needsCNH };
+}
+
+function ModelFAQ({ model }: { model: any }) {
+  const [open, setOpen] = useState<number | null>(null);
+  const { faqs } = getModelContent(model);
+
+  return (
+    <div className="mb-8">
+      <h2 className="text-white text-sm uppercase tracking-widest mb-4">Perguntas Frequentes</h2>
+      <div className="space-y-2">
+        {faqs.map((faq, i) => (
+          <div key={i} className="bg-white/5 border border-white/10 rounded-xl overflow-hidden">
+            <button
+              className="w-full flex items-center justify-between px-4 py-3.5 text-left gap-3"
+              onClick={() => setOpen(open === i ? null : i)}
+            >
+              <span className="text-white text-sm leading-snug">{faq.q}</span>
+              <ChevronDown size={16} className={`text-yellow-400 flex-shrink-0 transition-transform ${open === i ? 'rotate-180' : ''}`} />
+            </button>
+            {open === i && (
+              <div className="px-4 pb-4 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-3">
+                {faq.a}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function ModelPage({ modelId }: { modelId: string }) {
   const [model, setModel] = useState<any>(null);
   const [selColor, setSelColor] = useState(0);
@@ -106,6 +186,7 @@ export function ModelPage({ modelId }: { modelId: string }) {
   const curColor = model.colors[selColor] || model.colors[0];
   const img = curColor?.image;
   const waMsg = encodeURIComponent(`Vim pelo site! Quero saber mais sobre o ${model.name} na cor ${curColor?.name}`);
+  const { idealFor, advantages, description, needsCNH } = getModelContent(model);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
@@ -183,13 +264,52 @@ export function ModelPage({ modelId }: { modelId: string }) {
           ))}
         </div>
 
-        {/* Descrição detalhada */}
-        {model.detalhes && (
-          <div className="bg-white/5 rounded-2xl p-5 mb-6 border border-yellow-500/10">
-            <h2 className="text-yellow-400 text-xs uppercase tracking-widest mb-3">Sobre o modelo</h2>
-            <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">{model.detalhes}</p>
+        {/* Descrição gerada + detalhes do admin */}
+        <div className="bg-white/5 rounded-2xl p-5 mb-6 border border-yellow-500/10">
+          <h2 className="text-yellow-400 text-xs uppercase tracking-widest mb-3">Sobre o modelo</h2>
+          <p className="text-gray-300 text-sm leading-relaxed">{description}</p>
+          {model.detalhes && (
+            <p className="text-gray-400 text-sm leading-relaxed mt-3 whitespace-pre-line">{model.detalhes}</p>
+          )}
+          {!needsCNH && (
+            <div className="mt-3 inline-flex items-center gap-1.5 bg-green-500/10 border border-green-500/30 rounded-full px-3 py-1">
+              <CheckCircle2 size={13} className="text-green-400" />
+              <span className="text-green-400 text-xs">Dispensada CNH até 350W</span>
+            </div>
+          )}
+        </div>
+
+        {/* Vantagens */}
+        <div className="mb-6">
+          <h2 className="text-white text-sm uppercase tracking-widest mb-3">Vantagens deste modelo</h2>
+          <ul className="space-y-2">
+            {advantages.map((a, i) => (
+              <li key={i} className="flex items-start gap-2.5 text-gray-300 text-sm">
+                <CheckCircle2 size={15} className="text-yellow-400 flex-shrink-0 mt-0.5" />
+                {a}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Para quem é ideal */}
+        <div className="bg-white/5 rounded-2xl p-5 mb-6 border border-white/10">
+          <div className="flex items-center gap-2 mb-3">
+            <Users size={16} className="text-yellow-400" />
+            <h2 className="text-white text-sm uppercase tracking-widest">Para quem é ideal</h2>
           </div>
-        )}
+          <ul className="space-y-2">
+            {idealFor.map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-gray-300 text-sm">
+                <span className="text-yellow-400 mt-0.5">›</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* FAQ do modelo */}
+        <ModelFAQ model={model} />
 
         {/* Diferenciais locais */}
         <div className="grid grid-cols-1 gap-3 mb-8">
