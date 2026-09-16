@@ -72,7 +72,7 @@ function ModelCard({ model }: { model: ModelData }) {
   };
 
   const handleShare = () => {
-    const msg = `Confira o modelo ${model.name} da Denty Eco!\n\nPreço: ${model.price}\nPotência: ${model.power}\nAutonomia: ${model.autonomy}\nVelocidade: ${model.speed}\nBateria: ${model.battery} — ${model.batteryType}\n\nVeja mais: ${window.location.href}`;
+    const msg = `Confira o modelo ${model.name} da Denty Eco!\n\nPreço: ${model.price}\nPotência: ${model.power}\nAutonomia: ${model.autonomy}\nVelocidade: ${model.speed}\nBateria: ${model.battery} (${model.batteryType})\n\nVeja mais: ${window.location.href}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
@@ -95,7 +95,7 @@ function ModelCard({ model }: { model: ModelData }) {
           <img
             key={resolvedImage}
             src={resolvedImage}
-            alt={`${model.name} — ${current.name}`}
+            alt={`${model.name} cor ${current.name}`}
             className="w-full h-full object-contain scale-[1.55] group-hover:scale-[1.63] transition-transform duration-500"
           />
         ) : (
@@ -194,7 +194,7 @@ export function Models() {
         <div className="text-center mb-16">
           <p className="text-yellow-400 text-sm uppercase tracking-widest mb-3">Disponíveis em Joinville</p>
           <h2 className="text-4xl md:text-5xl text-white mb-4">Nossos Modelos</h2>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">Do urbano ao esportivo — encontre a scooter certa para o seu dia a dia</p>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">Do urbano ao esportivo: encontre a scooter certa para o seu dia a dia</p>
         </div>
 
         {loading ? (

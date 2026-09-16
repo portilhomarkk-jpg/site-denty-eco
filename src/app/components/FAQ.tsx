@@ -5,7 +5,7 @@ const faqs = [
   {
     question: 'Precisa de CNH para andar de scooter elétrica em Joinville?',
     answer:
-      'Depende da potência. Scooters elétricas autopropelidas com até 350W e velocidade máxima de 32 km/h são equiparadas a bicicletas — não precisam de CNH, emplacamento nem seguro. Modelos acima de 350W exigem CNH categoria A. Na Denty Eco temos modelos para os dois perfis. Fale conosco e indicamos o ideal para o seu caso.',
+      'Depende da potência. Scooters elétricas autopropelidas com até 350W e velocidade máxima de 32 km/h são equiparadas a bicicletas: não precisam de CNH, emplacamento nem seguro. Modelos acima de 350W exigem CNH categoria A. Na Denty Eco temos modelos para os dois perfis. Fale conosco e indicamos o ideal para o seu caso.',
   },
   {
     question: 'Qual é a autonomia das scooters elétricas da Denty Eco?',
@@ -15,12 +15,12 @@ const faqs = [
   {
     question: 'Quanto custa para carregar uma scooter elétrica?',
     answer:
-      'O custo médio de recarga completa é de R$ 1,50 a R$ 3,00 na conta de luz — equivalente a percorrer 40–80 km. Comparado à gasolina, a economia chega a 90% no custo por quilômetro rodado.',
+      'O custo médio de recarga completa é de R$ 1,50 a R$ 3,00 na conta de luz, o que equivale a percorrer 40–80 km. Comparado à gasolina, a economia chega a 90% no custo por quilômetro rodado.',
   },
   {
     question: 'A Denty Eco faz assistência técnica para scooters elétricas em Joinville?',
     answer:
-      'Sim! Temos oficina especializada com 25 anos de experiência em veículos de duas rodas. Realizamos manutenção preventiva, troca de bateria, diagnóstico eletrônico e reparo de motor. Atendemos na Rua Albano Schmidt, 5268 — Comasa, Joinville.',
+      'Sim! Temos oficina especializada com 25 anos de experiência em veículos de duas rodas. Realizamos manutenção preventiva, troca de bateria, diagnóstico eletrônico e reparo de motor. Atendemos na Rua Albano Schmidt, 5268, Comasa, Joinville.',
   },
   {
     question: 'Vocês entregam scooters elétricas fora de Joinville?',

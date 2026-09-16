@@ -34,7 +34,7 @@ function setJsonLd(id: string, data: object) {
 
 export function SEO() {
   useEffect(() => {
-    const title = 'Denty Eco | Scooter Elétrica em Joinville SC — Comprar Moto Elétrica';
+    const title = 'Denty Eco | Scooter Elétrica em Joinville SC | Comprar Moto Elétrica';
     const description =
       'Compre sua scooter elétrica ou moto elétrica em Joinville, SC. Denty Eco oferece modelos X13, Urban, Pro e Max com motor até 1000W e bateria de lítio. Atendemos Joinville, Jaraguá do Sul, Blumenau, Itajaí e toda Santa Catarina. 25 anos de experiência em motocicletas.';
     const keywords = [

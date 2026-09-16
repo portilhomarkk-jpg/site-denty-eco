@@ -83,7 +83,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <MapPin size={20} className="mt-0.5 flex-shrink-0 text-yellow-400" />
-                <span>Rua Albano Schmidt, 5268 — Comasa<br />Joinville, SC · CEP 89228-310</span>
+                <span>Rua Albano Schmidt, 5268, Comasa<br />Joinville, SC · CEP 89228-310</span>
               </li>
             </ul>
           </div>
@@ -91,7 +91,7 @@ export function Footer() {
 
         <div className="mb-10 rounded-2xl overflow-hidden border border-yellow-500/20" style={{ height: '260px' }}>
           <iframe
-            title="Localização Denty Eco — Joinville SC"
+            title="Localização Denty Eco em Joinville SC"
             src="https://maps.google.com/maps?q=Rua+Albano+Schmidt+5268+Comasa+Joinville+SC&output=embed&hl=pt-BR"
             width="100%"
             height="100%"

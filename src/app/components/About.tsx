@@ -21,7 +21,7 @@ export function About() {
                 A <span className="text-yellow-400">Denty Eco</span> nasceu em <strong>Joinville, SC</strong>, de quem já sabe o que é qualidade sobre duas rodas.
               </p>
               <p>
-                Há 25 anos, a <span className="text-yellow-400">Denty Motos</span> é referência em motocicletas em Joinville e região — vendas, manutenção e atendimento para quem leva a moto a sério. Esse histórico é a base que nos deu confiança para dar o próximo passo.
+                Há 25 anos, a <span className="text-yellow-400">Denty Motos</span> é referência em motocicletas em Joinville e região. Vendas, manutenção e atendimento para quem leva a moto a sério. Esse histórico é a base que nos deu confiança para dar o próximo passo.
               </p>
               <p>
                 A <span className="text-yellow-400">Denty Eco</span> é esse passo: <strong>scooters elétricas em Joinville</strong> para quem quer se mover com inteligência, praticidade e consciência. Mobilidade urbana que respeita seu tempo e o planeta.

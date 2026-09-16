@@ -39,9 +39,6 @@ export const COLOR_MAP: Record<string, string> = {
   Prata: '#9ca3af',
 };
 
-function useResolvedImage(src: string) {
-  return src;
-}
 
 function migrateModel(raw: any): Model {
   // migrate old format where colors was string[]
@@ -271,7 +268,7 @@ function AdminModelCard({ model, onEdit, onDelete }: {
   onEdit: (m: Model) => void;
   onDelete: (id: string) => void;
 }) {
-  const firstImg = useResolvedImage(model.colors[0]?.image ?? '');
+  const firstImg = model.colors[0]?.image ?? '';
   return (
     <div className="bg-white/5 backdrop-blur-xl rounded-2xl overflow-hidden border border-yellow-500/30 shadow-xl">
       <div className="h-48 overflow-hidden bg-gray-800 flex items-center justify-center">
@@ -710,7 +707,7 @@ function BannerSlideUpload({ slide, index, total, onChange, onRemove, onMoveUp, 
 }) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
-  const resolvedImg = useResolvedImage(slide.image);
+  const resolvedImg = slide.image;
 
   const handleFile = (file: File) => {
     if (!file.type.startsWith('image/')) return;
@@ -821,7 +818,6 @@ function BannerManager() {
     await api.saveBanners(sanitized);
     setSlides(sanitized);
     setSaving(false);
-    window.dispatchEvent(new Event('storage'));
   };
 
   return (
