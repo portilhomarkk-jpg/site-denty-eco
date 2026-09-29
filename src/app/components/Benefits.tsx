@@ -5,25 +5,25 @@ export function Benefits() {
     {
       icon: Leaf,
       title: '100% Sustentável',
-      description: 'Zero emissões de carbono. Contribua para um planeta mais limpo e saudável.',
+      description: 'Zero emissões de carbono nas ruas de Joinville. Contribua para uma cidade mais limpa e saudável.',
       color: 'from-yellow-400 to-yellow-500',
     },
     {
       icon: DollarSign,
       title: 'Economia Garantida',
-      description: 'Reduza seus gastos com transporte em até 70% comparado a carros convencionais.',
+      description: 'Recarga custa menos de R$ 3,00 e você roda até 80 km. Economia de até 90% em relação à gasolina.',
       color: 'from-yellow-500 to-amber-500',
     },
     {
       icon: Clock,
-      title: 'Mobilidade Rápida',
-      description: 'Evite congestionamentos e chegue ao seu destino mais rápido.',
+      title: 'Sem Burocracia',
+      description: 'Todos os nossos modelos dispensam CNH, emplacamento e seguro obrigatório. Comprou, andou.',
       color: 'from-amber-400 to-orange-400',
     },
     {
       icon: Zap,
-      title: 'Tecnologia Avançada',
-      description: 'Veículos conectados com app, GPS e bateria de longa duração.',
+      title: 'Entrega em Joinville',
+      description: 'Retira na loja no Comasa ou receba em casa em Joinville e região. Atendemos Jaraguá do Sul, São Bento do Sul e toda SC.',
       color: 'from-yellow-300 to-yellow-400',
     },
   ];
@@ -40,7 +40,7 @@ export function Benefits() {
             Vantagens que Você Sente<br className="hidden sm:block" /> no Dia a Dia
           </h2>
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Quem já tem uma scooter elétrica não volta atrás
+            Quem já tem uma scooter elétrica em Joinville não volta atrás
           </p>
         </div>
 

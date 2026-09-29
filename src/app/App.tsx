@@ -16,6 +16,7 @@ import { WhatsAppButton } from './components/WhatsAppButton';
 import { LocalSEO } from './components/LocalSEO';
 import { ModelPage } from './components/ModelPage';
 import { FAQ } from './components/FAQ';
+import { RegionalCoverage } from './components/RegionalCoverage';
 
 function HomePage() {
   return (
@@ -29,6 +30,7 @@ function HomePage() {
       <Benefits />
       <Services />
       <Testimonials />
+      <RegionalCoverage />
       <FAQ />
       <LocalSEO />
       <Footer />

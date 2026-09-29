@@ -79,9 +79,12 @@ export function Hero() {
       {/* Copy sobre a imagem */}
       <div className="absolute bottom-24 sm:bottom-36 left-0 right-0 z-20 text-center px-6 pointer-events-none">
         <p className="text-white/90 text-xs sm:text-base uppercase tracking-[0.2em] mb-1 sm:mb-2 drop-shadow-lg">Joinville, SC</p>
-        <h2 className="text-2xl sm:text-5xl md:text-6xl text-white drop-shadow-2xl leading-tight">
-          Mobilidade <span className="text-yellow-400">Elétrica</span><br className="hidden sm:block" /> para o Futuro
-        </h2>
+        <h1 className="text-2xl sm:text-5xl md:text-6xl text-white drop-shadow-2xl leading-tight">
+          Scooter <span className="text-yellow-400">Elétrica</span><br className="hidden sm:block" /> em Joinville
+        </h1>
+        <p className="text-white/80 text-xs sm:text-lg mt-2 sm:mt-3 drop-shadow-lg max-w-xl mx-auto">
+          A maior variedade de scooters elétricas de Joinville. Motor até 1000W, sem CNH, sem emplacamento.
+        </p>
       </div>
 
       <div className="absolute bottom-8 sm:bottom-14 left-0 right-0 z-20 flex justify-center gap-3 sm:gap-4 px-4">
