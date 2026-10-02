@@ -2,32 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://dentyeco.com.br/</loc>
-    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dentyeco.com.br/modelos/scooter-eletrica-urban-350w</loc>
-    <lastmod>2026-09-09</lastmod>
+    <loc>https://dentyeco.com.br/modelos/x13</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dentyeco.com.br/modelos/scooter-eletrica-pro-500w</loc>
-    <lastmod>2026-09-09</lastmod>
+    <loc>https://dentyeco.com.br/modelos/n10</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dentyeco.com.br/modelos/scooter-eletrica-max-800w</loc>
-    <lastmod>2026-09-09</lastmod>
+    <loc>https://dentyeco.com.br/modelos/m4</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dentyeco.com.br/modelos/scooter-eletrica-x13-1000w</loc>
-    <lastmod>2026-09-09</lastmod>
+    <loc>https://dentyeco.com.br/modelos/fontaine</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dentyeco.com.br/modelos/alligator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dentyeco.com.br/modelos/alligator-nex</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dentyeco.com.br/modelos/lee</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dentyeco.com.br/modelos/veux</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dentyeco.com.br/modelos/gicin-8sk</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dentyeco.com.br/modelos/e-bike-power-sport</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dentyeco.com.br/modelos/xb3</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dentyeco.com.br/modelos/ccp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dentyeco.com.br/modelos/foston-s09-pro</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
