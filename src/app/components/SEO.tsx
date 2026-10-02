@@ -137,16 +137,6 @@ export function SEO() {
         { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '08:00', closes: '18:00' },
         { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Saturday'], opens: '08:00', closes: '12:00' },
       ],
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'Scooters e Motos Elétricas',
-        itemListElement: [
-          { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Scooter Elétrica X13 1000W', description: 'Scooter elétrica de alta performance com motor 1000W e bateria de lítio fixa' }, price: '9990', priceCurrency: 'BRL', availability: 'https://schema.org/InStock', areaServed: 'BR' },
-          { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Scooter Elétrica Urban 350W', description: 'Scooter elétrica urbana ideal para o dia a dia com bateria removível' }, price: '3990', priceCurrency: 'BRL', availability: 'https://schema.org/InStock', areaServed: 'BR' },
-          { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Scooter Elétrica Pro 500W', description: 'Scooter elétrica com bateria removível de lítio e maior autonomia' }, price: '5490', priceCurrency: 'BRL', availability: 'https://schema.org/InStock', areaServed: 'BR' },
-          { '@type': 'Offer', itemOffered: { '@type': 'Product', name: 'Scooter Elétrica Max 800W', description: 'Scooter elétrica de máxima potência e autonomia' }, price: '7990', priceCurrency: 'BRL', availability: 'https://schema.org/InStock', areaServed: 'BR' },
-        ],
-      },
     });
 
     // JSON-LD — WebSite com SearchAction
